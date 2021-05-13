@@ -12,7 +12,7 @@ Simulates lambda nodejs runtime by having a HTTP listener and invoking nodejs ha
 This runtime has the goal to be the runtime used by the hybridless framework in other to provide base builds for nodejs environments on ECS tasks by letting the same type of code used on lambdas to execute on the tasks with the same behaviour. 
 
 Essentially we have an http listener (HAPI) that will route everything but health check route to the specified function. The function is invoked with the same context and event issued by API Gateway and behaves like it.
-At the time this is being written not everything has being perfectly replicated by the main functions and event informations are available. If you want to check all the latest context implementation, please check the source. 
+At the time this is being written not everything has being perfectly replicated by the main functions and event informations are available. If you want to check all the latest context implementation, please check the [source] (https://github.com/Hybridless/runtime-nodejs-httpd/blob/61a18866eead4f07f80b9d6821a50f855f46fdae/src/lib/LambdaEvent.js#L31) 
 
 
 ### Usage
@@ -84,12 +84,12 @@ Hopefully, 100% of time the client will receive responses issued by your functio
 
 -  **Response Type:** Function Invocation
 
-   **Body:** `content.succeed.body` OR `function.body`
+   **Body:** `context.succeed.body` OR `function.body`
    
-   **Status Code:** `content.succeed.statusCode` OR `function.statusCode`
+   **Status Code:** `context.succeed.statusCode` OR `function.statusCode`
 -  **Response Type:** Function didn't returned any data or malformed response
 
-   **Status Code:** `content.succeed.statusCode` OR `function.statusCode`
+   **Status Code:** `context.succeed.statusCode` OR `function.statusCode`
 
    **Body:**
    ```
