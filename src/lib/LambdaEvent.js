@@ -31,26 +31,26 @@ export default class LambdaEvent {
   _buildEvent() {
     return {
       body: this.request.payload || null, //enforce key
-      headers: unflatten(this.request.raw.req.headers, 2),
-      httpMethod: this.request.method.toUpperCase(),
+      headers: this.request.raw ? unflatten(this.request.raw.req.headers, 2) : [],
+      httpMethod: this.request.method ? this.request.method.toUpperCase() : null,
       isBase64Encoded: false, // TODO
       multiValueHeaders: parseMultiValueHeaders(
-        this.request.raw.req.headers || [],
+        this.request.raw ? this.request.raw.req.headers || [] : [],
       ),
       multiValueQueryStringParameters: parseMultiValueQueryStringParameters(
-        this.request.raw.req.url,
+        this.request.raw ? this.request.raw.req.url : [],
       ),
       path: this.request.path,
-      pathParameters: nullIfEmpty(this.request.params),
-      queryStringParameters: parseQueryStringParameters(this.request.raw.req.url),
+      pathParameters: this.request.params ? nullIfEmpty(this.request.params) : null,
+      queryStringParameters: this.request.raw ? parseQueryStringParameters(this.request.raw.req.url) : null,
       requestContext: {
         accountId: (process.env.AWS_ACCOUNT_ID || null),
         apiId: 'TODO',
-        authorizer: null, //todo
+        authorizer: null,
         domainName: 'TODO',
         domainPrefix: 'TODO',
         extendedRequestId: cuid(),
-        httpMethod: this.request.method.toUpperCase(),
+        httpMethod: this.request.method ? this.request.method.toUpperCase() : null,
         identity: {
           accessKey: null,
           accountId: (process.env.AWS_ACCOUNT_ID || null),
@@ -60,16 +60,16 @@ export default class LambdaEvent {
           cognitoIdentityId: null,
           cognitoIdentityPoolId: null,
           principalOrgId: null,
-          sourceIp: this.request.headers['x-forwarded-for'] || this.request.info.remoteAddress,
+          sourceIp: this.request.headers ? this.request.headers['x-forwarded-for'] || this.request.info.remoteAddress : null,
           user: null,
-          userAgent: this.request.headers['user-agent'],
+          userAgent: this.request.headers ? this.request.headers['user-agent'] : null,
           userArn: null,
         },
         path: this.request.path,
         protocol: 'HTTP/1.1',
         requestId: `${cuid()}-${cuid()}`,
-        requestTime: formatToClfTime(this.request.info.received),
-        requestTimeEpoch: this.request.info.received,
+        requestTime: this.request.info ? formatToClfTime(this.request.info.received) : null,
+        requestTimeEpoch: this.request.info ? this.request.info.received : null,
         resourceId: 'TODO?',
         resourcePath: Globals.Listener_HTTP_ProxyRoute,
         stage: process.env.STAGE,

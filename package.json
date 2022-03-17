@@ -1,6 +1,6 @@
 {
   "name": "@hybridless/runtime-nodejs-httpd",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Hybridless Runtime - NodeJS httpd",
   "main": "index.js",
   "scripts": {

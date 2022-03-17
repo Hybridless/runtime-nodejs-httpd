@@ -1,4 +1,5 @@
 import RuntimeProxy from './lib/RuntimeProxy';
+import LambdaEvent from './lib/LambdaEvent';
 //
 export default class Runtime {
   /* config structure
@@ -30,3 +31,4 @@ export default class Runtime {
     process.on('SIGINT', this.stop.bind(this)); // listen on SIGINT signal and gracefully stop the server
   }
 }
+export { LambdaEvent };
