@@ -24,6 +24,7 @@ export default class Runtime {
   async stop(err) {
     await this.proxy.unload(err);
   }
+  static get LambdaEvent() { return LambdaEvent; }
   /* private */
   _listenProcessEvents() {
     //start proc listeners
@@ -31,4 +32,3 @@ export default class Runtime {
     process.on('SIGINT', this.stop.bind(this)); // listen on SIGINT signal and gracefully stop the server
   }
 }
-export { LambdaEvent };
