@@ -119,7 +119,7 @@ export default class RuntimeProxy {
       resp = this._processLambdaResponse(invokation, h);
     } catch (e) {
       console.error('[Runtime Proxy] - Exception during execution!', e);
-      res = h.response({...e, err: Globals.Resp_MSG_EXCEPTION, errCode: Globals.Resp_CODE_EXCEPTION})
+      resp = h.response({...e, err: Globals.Resp_MSG_EXCEPTION, errCode: Globals.Resp_CODE_EXCEPTION})
              .code(Globals.Resp_STATUSCODE_EXCEPTION); //bad gateway
     }
     console.debug(`[Runtime Proxy] - Request took ${Date.now()-startTime}ms`);

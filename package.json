@@ -9,7 +9,6 @@
   "license": "GNU GPLv3",
   "dependencies": {
     "@hapi/hapi": "^20.2.0",
-    "@newrelic/aws-sdk": "^4.0.1",
     "cuid": "^2.1.8",
     "esm": "^3.2.25",
     "luxon": "^2.0.2",
