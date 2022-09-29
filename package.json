@@ -12,7 +12,7 @@
     "cuid": "^2.1.8",
     "esm": "^3.2.25",
     "luxon": "^2.0.2",
-    "newrelic": "^8.3.0",
+    "newrelic": "^8.17.1",
     "unflatten": "^1.0.4"
   },
   "devDependencies": {}
