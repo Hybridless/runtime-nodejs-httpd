@@ -1,6 +1,6 @@
 {
   "name": "@hybridless/runtime-nodejs-httpd",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Hybridless Runtime - NodeJS httpd",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "cuid": "^2.1.8",
     "esm": "^3.2.25",
     "luxon": "^2.0.2",
-    "newrelic": "^9.2.0",
+    "newrelic": "^8.3.0",
     "unflatten": "^1.0.4"
   },
   "devDependencies": {}
