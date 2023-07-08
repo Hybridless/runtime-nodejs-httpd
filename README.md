@@ -7,6 +7,9 @@ Simulates lambda nodejs runtime by having a HTTP listener and invoking nodejs ha
 - ![GitHub commit activity](http://img.shields.io/github/commit-activity/m/hybridless/runtime-nodejs-httpd)
 - ![GitHub last commit](http://img.shields.io/github/last-commit/hybridless/runtime-nodejs-httpd)
 
+ESM version
+- ![npm](https://img.shields.io/npm/dy/@hybridless/runtime-nodejs-httpd-esm) ![npm](https://img.shields.io/npm/v/@hybridless/runtime-nodejs-httpd-esm) ![npm (tag)](https://img.shields.io/npm/v/@hybridless/runtime-nodejs-httpd-esm/latest) ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@hybridless/runtime-nodejs-httpd-esm)
+
 ### Overall
 
 This runtime has the goal to be the runtime used by the hybridless framework in other to provide base builds for nodejs environments on ECS tasks by letting the same type of code used on lambdas to execute on the tasks with the same behaviour. 
