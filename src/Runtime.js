@@ -1,5 +1,5 @@
-import RuntimeProxy from './lib/RuntimeProxy';
-import LambdaEvent from './lib/LambdaEvent';
+import RuntimeProxy from './lib/RuntimeProxy.js';
+import LambdaEvent from "./lib/LambdaEvent.js";
 //
 export default class Runtime {
   /* config structure
@@ -29,6 +29,6 @@ export default class Runtime {
   _listenProcessEvents() {
     //start proc listeners
     process.on('unhandledRejection', this.stop.bind(this)); //Listen to exceptions
-    process.on('SIGINT', this.stop.bind(this)); // listen on SIGINT signal and gracefully stop the server
+    process.on("SIGINT", this.stop.bind(this)); // listen on SIGINT signal and gracefully stop the server
   }
 }

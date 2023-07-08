@@ -1,11 +1,13 @@
 import cuid from 'cuid';
 import {
-  parseMultiValueHeaders, parseMultiValueQueryStringParameters,
-  parseQueryStringParameters, formatToClfTime, nullIfEmpty
-} from '../Utils';
-import Globals from '../Globals';
-//
-const unflatten = require('unflatten');
+  parseMultiValueHeaders,
+  parseMultiValueQueryStringParameters,
+  parseQueryStringParameters,
+  formatToClfTime,
+  nullIfEmpty,
+} from "../Utils.js";
+import Globals from "../Globals.js";
+import unflatten from 'unflatten';
 //
 export default class LambdaEvent {
   constructor(request, functionPath, functionHandler) {
@@ -22,7 +24,7 @@ export default class LambdaEvent {
           resolve({err, data});
         });
         //Invoke
-        const resp = await (require(`${this.functionPath}`)[this.functionHandler](event, context));
+        const resp = await ((await import(`${this.functionPath}`))[this.functionHandler](event, context));
         if (resp) resolve({data: resp});
       } catch (e) { reject(e); } //forward
     });

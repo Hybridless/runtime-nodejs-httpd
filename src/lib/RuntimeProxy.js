@@ -1,9 +1,14 @@
-import Globals from '../Globals';
-import LambdaEvent from './LambdaEvent';
+import Globals from '../Globals.js';
+import LambdaEvent from "./LambdaEvent.js";
 import Hapi from '@hapi/hapi';
 //
-const assert = require('assert');
-const pkg = require('../../package.json');
+import assert from 'assert';
+import fs from 'fs';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+//
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const pkg = JSON.parse(fs.readFileSync("package.json"));
 //
 export default class RuntimeProxy {
   /* config structure
@@ -40,7 +45,7 @@ export default class RuntimeProxy {
   async load() {
     await this.startListeners();
     this.installRoutes();
-    this._warmFunction();
+    await this._warmFunction();
   }
   async unload(err) { await this.stopListeners(err); }
   /* private */
@@ -86,6 +91,8 @@ export default class RuntimeProxy {
     });
   }
   async stopListeners(err) {
+    if (this.stopping) return;
+    this.stopping = true;
     console.debug('[Runtime Proxy] - [STOPPING]');
     const _err = await this.listener.stop({ timeout: 10000 });
     if (err || _err) console.log('[Runtime Proxy] - exit output:', (err || _err));
@@ -148,7 +155,7 @@ export default class RuntimeProxy {
   }
   /* helpers */
   _getFunctionFullpath() {
-    return `${this.config.baseDir || __dirname}${this.config.function.path}`;
+    return `${this.config.baseDir || __dirname}${this.config.function.path}.mjs`;
   }
   _validateConfig() {
     assert(this.config.port, '[Runtime Proxy] - Listener port for the process is not specified! - missing `port` key on config.');
@@ -156,11 +163,11 @@ export default class RuntimeProxy {
     assert(this.config.function.path, '[Runtime Proxy] - Invocation function path is not specified! - missing `function.path` key on config.');
     assert(this.config.function.handler, '[Runtime Proxy] - Invocation function handler is not specified! - missing `function.handler` key on config.');
   }
-  _warmFunction() {
+  async _warmFunction() {
     if (this.config.function.preload == undefined || this.config.function.preload) {
       try {
         const t = Date.now();
-        require(this._getFunctionFullpath());
+        await import(this._getFunctionFullpath());
         console.debug(`[Runtime Proxy] - Took ${(Date.now() - t)}ms to preload application!`);
       } catch (e) {
         console.error('[Runtime Proxy] - Exception while preloading exec. file!', e);

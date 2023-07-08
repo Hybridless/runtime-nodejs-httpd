@@ -1,12 +1,10 @@
 // Set options as a parameter, environment variable, or rc file.
-// eslint-disable-next-line no-global-assign
-require = require("esm")(module/* , options */);
 //
-const Runtime = require("./../src/Runtime").default;
+import Runtime from "./../src/Runtime.js";
 const Gateway = new Runtime({
   port: 9999,
   function: {
-    path: '/../../test/route.js',
+    path: '/../../test/route',
     handler: 'handler'
   },
   cors: {

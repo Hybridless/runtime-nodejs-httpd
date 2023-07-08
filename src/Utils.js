@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-const unflatten = require('unflatten');
+import unflatten from 'unflatten';
 //
 const { fromMillis } = DateTime;
 const { fromEntries } = Object;

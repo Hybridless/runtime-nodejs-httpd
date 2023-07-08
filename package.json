@@ -1,19 +1,19 @@
 {
-  "name": "@hybridless/runtime-nodejs-httpd",
-  "version": "0.1.5",
+  "name": "@hybridless/runtime-nodejs-httpd-esm",
+  "version": "0.1.0",
   "description": "Hybridless Runtime - NodeJS httpd",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "GNU GPLv3",
   "dependencies": {
-    "@hapi/hapi": "^20.2.2",
-    "cuid": "^2.1.8",
+    "@hapi/hapi": "^21.3.2",
+    "cuid": "^3.0.0",
     "esm": "^3.2.25",
     "luxon": "^2.0.2",
     "newrelic": "^8.3.0",
     "unflatten": "^1.0.4"
-  },
-  "devDependencies": {}
+  }
 }
