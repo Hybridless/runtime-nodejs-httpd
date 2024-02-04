@@ -103,9 +103,10 @@ export default class RuntimeProxy {
   async _healthCheckHandler(request, h) {
     //Set new relic path name
     if (process.env.NEW_RELIC_ENABLED == 'true' || process.env.NEW_RELIC_ENABLED == true) {
-      //New relic pre-append '/' at the begin, so we remove here :) 
-      const tr = require('newrelic').getTransaction();
-      if (tr) tr.ignore();
+      // Implemetation commented for ESM alpha
+      // New relic pre-append '/' at the begin, so we remove here :) 
+      // const tr = require('newrelic').getTransaction();
+      // if (tr) tr.ignore();
     } return h.response('Healthy!');
   }
   async _requestHandler(request, h) {
@@ -114,8 +115,9 @@ export default class RuntimeProxy {
     try {
       //Set new relic path name
       if (process.env.NEW_RELIC_ENABLED == 'true' || process.env.NEW_RELIC_ENABLED == true) {
-        //New relic pre-append '/' at the begin, so we remove here :) 
-        require('newrelic').setTransactionName(request.path.substr(1, request.path.length - 1));
+        // Implemetation commented for ESM alpha
+        // New relic pre-append '/' at the begin, so we remove here :)
+        // require('newrelic').setTransactionName(request.path.substr(1, request.path.length - 1));
       }
       //Generate event with request stuff
       const path = this._getFunctionFullpath();

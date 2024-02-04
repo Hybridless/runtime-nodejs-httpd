@@ -1,6 +1,6 @@
 {
   "name": "@hybridless/runtime-nodejs-httpd-esm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Hybridless Runtime - NodeJS httpd",
   "main": "index.js",
   "type": "module",
